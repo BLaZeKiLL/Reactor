@@ -7,5 +7,15 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "react": {
+      "tags": []
+    },
+    "react-e2e": {
+      "tags": []
+    },
+    "electron": {
+      "tags": []
+    }
+  }
 }
