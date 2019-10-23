@@ -4,6 +4,6 @@ import './app.scss';
 
 export const App: FunctionComponent = () => {
   return (
-    <h1>Hello World</h1>
+    <h1>Bye World</h1>
   );
 };
