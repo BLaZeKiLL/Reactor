@@ -57,7 +57,6 @@
     "eslint-plugin-react": "7.14.3",
     "eslint-plugin-react-hooks": "1.6.1",
     "jest": "24.1.0",
-    "litegraph.js": "./local/litegraph.js-0.7.1.tgz",
     "prettier": "1.18.2",
     "react": "16.9.0",
     "react-dom": "16.9.0",
