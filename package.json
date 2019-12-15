@@ -32,7 +32,7 @@
     "build:dev": "yarn run build:electron -c dev && yarn run build:web -c dev",
     "build:prod": "yarn run build:electron -c production && yarn run build:web -c production",
     "build:electron": "nx build electron",
-    "build:web": "nx build react",
+    "build:web": "nx build react --base-href ./",
     "test:web": "nx test browser",
     "test:electron": "nx test electron"
   },
