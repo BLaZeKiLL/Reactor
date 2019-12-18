@@ -6,7 +6,17 @@ let win: BrowserWindow, serve: boolean;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
 
-function createWindow() {
+const installExtensions = async () => {
+  const installer = require('electron-devtools-installer');
+  const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
+  const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS'];
+
+  return Promise.all(
+      extensions.map(name => installer.default(installer[name], forceDownload))
+  ).catch(console.log);
+};
+
+const createWindow = async () => {
 
   const electronScreen = screen;
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
@@ -23,6 +33,7 @@ function createWindow() {
   });
 
   if (serve) {
+    await installExtensions();
     require('electron-reload')(__dirname, {
       electron: path.join(__dirname, '/../../../', 'node_modules', '.bin', 'electron'),
       hardResetMethod: 'exit'
