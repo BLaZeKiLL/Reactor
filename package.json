@@ -1,6 +1,6 @@
 {
   "name": "reactor",
-  "version": "0.0.0",
+  "version": "1.21.2",
   "license": "MIT",
   "main": "dist/apps/electron/main.js",
   "scripts": {
