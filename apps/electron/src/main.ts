@@ -9,11 +9,12 @@ serve = args.some(val => val === '--serve');
 const installExtensions = async () => {
   const installer = require('electron-devtools-installer');
   const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
-  const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS'];
+  const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS', 'DEVTRON'];
 
   return Promise.all(
-      extensions.map(name => installer.default(installer[name], forceDownload))
-  ).catch(console.log);
+    extensions.map(name => {
+      installer.default(installer[name], forceDownload);
+    })).catch(console.log);
 };
 
 const createWindow = async () => {
@@ -33,7 +34,7 @@ const createWindow = async () => {
   });
 
   if (serve) {
-    await installExtensions();
+    //await installExtensions();
     require('electron-reload')(__dirname, {
       electron: path.join(__dirname, '/../../../', 'node_modules', '.bin', 'electron'),
       hardResetMethod: 'exit'
