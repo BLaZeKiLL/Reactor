@@ -6,6 +6,7 @@
       "sourceRoot": "apps/react/src",
       "projectType": "application",
       "schematics": {},
+      "prefix": "electron",
       "architect": {
         "build": {
           "builder": "@nrwl/web:build",
