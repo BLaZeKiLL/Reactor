@@ -1,3 +1,4 @@
+//import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer';
 import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
@@ -6,16 +7,10 @@ let win: BrowserWindow, serve: boolean;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
 
-const installExtensions = async () => {
-  const installer = require('electron-devtools-installer');
-  const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
-  const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS', 'DEVTRON'];
-
-  return Promise.all(
-    extensions.map(name => {
-      installer.default(installer[name], forceDownload);
-    })).catch(console.log);
-};
+// const installExtensions = async () => {
+//   await installExtension(REACT_DEVELOPER_TOOLS);
+//   await installExtension(REDUX_DEVTOOLS);
+// };
 
 const createWindow = async () => {
 
@@ -34,7 +29,11 @@ const createWindow = async () => {
   });
 
   if (serve) {
-    //await installExtensions();
+    // try {
+    //   await installExtensions();
+    // } catch (err) {
+    //   console.error(err);
+    // }
     require('electron-reload')(__dirname, {
       electron: path.join(__dirname, '/../../../', 'node_modules', '.bin', 'electron'),
       hardResetMethod: 'exit'
@@ -48,10 +47,6 @@ const createWindow = async () => {
     }));
   }
 
-  if (serve) {
-    // win.webContents.openDevTools();
-  }
-
   // Emitted when the window is closed.
   win.on('closed', () => {
     // Dereference the window object, usually you would store window
@@ -63,7 +58,6 @@ const createWindow = async () => {
 }
 
 try {
-
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
@@ -88,5 +82,5 @@ try {
 
 } catch (e) {
   // Catch Error
-  // throw e;
+  throw e;
 }
