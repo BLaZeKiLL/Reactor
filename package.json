@@ -1,5 +1,18 @@
 {
   "name": "reactor",
+  "description": "React + Electron + Nx starter project in typescript",
+  "author": {
+    "email": "blazeingamer10@gmail.com",
+    "name": "BLaZeKiLL"
+  },
+  "keywords": [
+    "React",
+    "Electron",
+    "nx",
+    "nrwl",
+    "typescript",
+    "starter project"
+  ],
   "version": "0.0.0",
   "license": "MIT",
   "main": "dist/apps/electron/main.js",
@@ -43,7 +56,7 @@
     "electron:linux": "yarn run build:prod && yarn run package:linux",
     "electron:mac": "yarn run build:prod && yarn run package:mac"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "tslib": "^1.10.0"
   },
