@@ -1,16 +1,11 @@
 import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
-import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer';
 
-let win: BrowserWindow, serve: boolean;
+let win: BrowserWindow, serve: boolean, ext_install: boolean;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
-
-const installExtensions = async () => {
-  await installExtension(REACT_DEVELOPER_TOOLS);
-  await installExtension(REDUX_DEVTOOLS);
-};
+ext_install = args.some(val => val === '--ext-install');
 
 const createWindow = async () => {
 
@@ -29,11 +24,6 @@ const createWindow = async () => {
   });
 
   if (serve) {
-    try {
-      await installExtensions();
-    } catch (err) {
-      console.error(err);
-    }
     require('electron-reload')(__dirname, {
       electron: path.join(__dirname, '/../../../', 'node_modules', '.bin', 'electron'),
       hardResetMethod: 'exit'
@@ -54,6 +44,22 @@ const createWindow = async () => {
     // when you should delete the corresponding element.
     win = null;
   });
+
+  //[IMPORTANT] CALL THIS ONCE ONLY
+  if (ext_install) {
+    const installer = require('electron-devtools-installer');
+    const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
+    const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS'];
+
+    Promise.all(
+      extensions.map(name => installer.default(installer[name], forceDownload))
+    )
+    .then(() => {
+      console.log('Extensions Installed, Closing App');
+      app.exit();
+    })
+    .catch(console.log);
+  }
 
 }
 
