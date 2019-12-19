@@ -1,10 +1,20 @@
 # Reactor
 
-This project was generated using [Nx](https://nx.dev).
+## Enviorment setup
 
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png" width="450"></p>
+Run `yarn install` to install dependencies.
 
-🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
+> You can also use npm if so make sure to delete yarn.lock
+
+Run `yarn run electron:ext-install` to add react and redux dev tools extensions to your applications copy of electron
+
+> Make sure to run this command once only, currently if ran more than once electron wont start unitl you delete applicaion cache
+> Application cache location
+> - Windows: C:/Users/\<user>/AppData/Roaming/\<yourAppName>/Cache
+> - Linux: /home/\<user>/.config/\<yourAppName>/Cache
+> - OS X: /Users/\<user>/Library/Application Support/\<yourAppName>/Cache
+
+Run `require('devtron').install()` in electons consolse once to add devtron extension
 
 ## Adding capabilities to your workspace
 
@@ -43,27 +53,19 @@ Run `nx g @nrwl/react:lib my-lib` to generate a library.
 
 Libraries are sharable across libraries and applications. They can be imported from `@reactor/mylib`.
 
-## Development server
-
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
 ## Code scaffolding
 
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `nx g @nrwl/react:component my-component --project=react` to generate a new component.
 
 ## Running unit tests
 
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+unit tests are executed via [Jest](https://jestjs.io).
 
 Run `nx affected:test` to execute the unit tests affected by a change.
 
 ## Running end-to-end tests
 
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+Run `nx e2e react` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
 
 Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
 
