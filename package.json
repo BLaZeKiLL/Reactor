@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "npx electron-builder install-app-deps",
     "nx": "nx",
-    "start": "npx yarn-run-all -p web:start:dev electron:start:dev ",
+    "start": "npm-run-all -p web:start:dev electron:start:dev ",
     "build": "nx build",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
@@ -36,9 +36,12 @@
     "build:web": "nx build react --base-href ./",
     "test:web": "nx test browser",
     "test:electron": "nx test electron",
-    "electron:linux": "yarn run build:prod && npx electron-builder build --linux",
-    "electron:windows": "yarn run build:prod && npx electron-builder build --windows",
-    "electron:mac": "yarn run build:prod && npx electron-builder build --mac"
+    "package:windows": "npx electron-builder build --windows",
+    "package:linux": "npx electron-builder build --linux",
+    "package:mac": "npx electron-builder build --mac",
+    "electron:windows": "yarn run build:prod && yarn run package:windows",
+    "electron:linux": "yarn run build:prod && yarn run package:linux",
+    "electron:mac": "yarn run build:prod && yarn run package:mac"
   },
   "private": true,
   "dependencies": {
@@ -76,6 +79,7 @@
     "eslint-plugin-react": "7.17.0",
     "eslint-plugin-react-hooks": "2.3.0",
     "jest": "24.9.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "1.19.1",
     "react": "16.12.0",
     "react-dom": "16.12.0",

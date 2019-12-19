@@ -1,10 +1,12 @@
 # Reactor
 
+React + Electron + Nx starter project in typescript
+
 ## Enviorment setup
 
 Run `yarn install` to install dependencies.
 
-> You can also use npm if so make sure to delete yarn.lock
+> You can also use npm if so make sure to delete yarn.lock, and change 'yarn run' to 'npm run' in scripts
 
 Run `yarn run electron:ext-install` to add react and redux dev tools extensions to your applications copy of electron
 
@@ -15,6 +17,44 @@ Run `yarn run electron:ext-install` to add react and redux dev tools extensions 
 > - OS X: /Users/\<user>/Library/Application Support/\<yourAppName>/Cache
 
 Run `require('devtron').install()` in electons consolse once to add devtron extension
+
+## Starting
+
+Run `yarn start` to serve the react app on localhost:4200 and start electron to load using http alowing hot reload for react
+
+Run `nx serve react` to just serve react
+
+Run `yarn run electron:start:dev` to start electron in http mode
+
+## Building
+
+Run `yarn run build:electron` to do a development build of electron
+
+Run `yarn run build:web` to do a development build of react, also changin base href
+
+Run `yarn run build:dev` to do a development build of react and electron
+
+Run `yarn run build:prod` to do a production build of react and electron
+
+> after build of react postbuild.js is executed which chages react script import types from 'module' to 'text/javascript' in the build index.html as file protocol doeen't supply MIME type causing error with electron
+
+## Production
+
+Run `yarn run electron:start:prod` to do a production build of react and electron and start electon in file mode to load react built files
+
+Run `yarn run electron:start` to just build and start electron in file mode
+
+## Packaging
+
+[electron-builder](https://www.electron.build/) is used for packaging and it's config can be found in electron-builder.json
+
+runtime dependencies should be added to dependecies array in package .json as they will be added to the final package, devDependencies won't be added
+
+also electron-builder.json can be used to ignore and include specific files for the build
+
+Run `yarn run package:<platform>` to package built files for the given platform
+
+Run `yarn run electron:<platform>` to do a production build of react and electron and package for the given platform
 
 ## Adding capabilities to your workspace
 
