@@ -81,7 +81,7 @@
     "devtron": "^1.4.0",
     "document-register-element": "1.14.3",
     "dotenv": "8.2.0",
-    "electron": "^7.1.6",
+    "electron": "^7.2.4",
     "electron-builder": "21.2.0",
     "electron-devtools-installer": "^2.2.4",
     "electron-reload": "^1.5.0",
